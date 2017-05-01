@@ -1,0 +1,17 @@
+# ufpatcc
+Classe LaTeX para trabalhos de conclusão de curso na Universidade Federal do Pará (UFPA).
+|
+-------:| -----------------------------------------------------------------
+ufpatcc:| Classe LaTeX para trabalhos de conclusão de curso na Universidade Federal do Pará (UFPA)
+ Author:| Paulo Alexandre Aquino da Costa
+ E-mail:| contato@pauloalexandre.com
+License:| Released under the LaTeX Project Public License v1.3c or later
+    See:| http://www.latex-project.org/lppl.txt
+
+Classe criada para facilitar a escrita de trabalhos de conclusão de curso
+na Universidade Federal do Pará (UFPA).
+Esta classe extende a classe \LaTeX{} |report|,
+acrescentado algumas opções, comandos e ambientes para a formatação automática das
+partes pré-textuais do trabalho de conclusão como, por exemplo, a capa, a folha de rosto,
+a ficha catalográfica e a folha de aprovação.
+

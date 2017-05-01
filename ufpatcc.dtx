@@ -1,0 +1,951 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2017 by Paulo Alexandre Aquino da Costa <contato@pauloalexandre.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License (LPPL), either
+% version 1.3c of this license or (at your option) any later
+% version.  The latest version of this license is in the file:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% This work is "maintained" (as per LPPL maintenance status) by
+% Paulo Alexandre Aquino da Costa.
+%
+% This work consists of the file ufpatcc.dtx and a Makefile.
+% Running "make" generates the derived files README, ufpatcc.pdf and ufpatcc.cls.
+% Running "make inst" installs the files in the user's TeX tree.
+% Running "make install" installs the files in the local TeX tree.
+%
+% \fi
+%
+% \iffalse
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+# ufpatcc
+Classe LaTeX para trabalhos de conclusão de curso na Universidade Federal do Pará (UFPA).
+|
+-------:| -----------------------------------------------------------------
+ufpatcc:| Classe LaTeX para trabalhos de conclusão de curso na Universidade Federal do Pará (UFPA)
+ Author:| Paulo Alexandre Aquino da Costa
+ E-mail:| contato@pauloalexandre.com
+License:| Released under the LaTeX Project Public License v1.3c or later
+    See:| http://www.latex-project.org/lppl.txt
+
+Classe criada para facilitar a escrita de trabalhos de conclusão de curso
+na Universidade Federal do Pará (UFPA).
+Esta classe extende a classe \LaTeX{} |report|,
+acrescentado algumas opções, comandos e ambientes para a formatação automática das
+partes pré-textuais do trabalho de conclusão como, por exemplo, a capa, a folha de rosto,
+a ficha catalográfica e a folha de aprovação.
+
+%</readme>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+
+Copyright (C) 2017 by Paulo Alexandre Aquino da Costa <contato@pauloalexandre.com>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License (LPPL), either
+version 1.3c of this license or (at your option) any later
+version.  The latest version of this license is in the file:
+
+http://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+Paulo Alexandre Aquino da Costa.
+
+\endpreamble
+\postamble
+
+-------:| -----------------------------------------------------------------
+ufpatcc:| Classe LaTeX para trabalhos de conclusão de curso na Universidade Federal do Pará
+ Author:| Paulo Alexandre Aquino da Costa
+ E-mail:| contato@pauloalexandre.com
+License:| Released under the LaTeX Project Public License v1.3c or later
+    See:| http://www.latex-project.org/lppl.txt
+
+This work consists of the file ufpatcc.dtx and a Makefile.
+Running "make" generates the derived files README, ufpatcc.pdf and ufpatcc.cls.
+Running "make inst" installs the files in the user's TeX tree.
+Running "make install" installs the files in the local TeX tree.
+
+\endpostamble
+
+\usedir{tex/latex/ufpatcc}
+\generate{
+  \file{\jobname.cls}{\from{\jobname.dtx}{class}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/ufpatcc}
+\generate{
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/ufpatcc}
+\generate{
+  \file{README.txt}{\from{\jobname.dtx}{readme}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{ufpatcc.dtx}
+%</driver>
+%<class>\NeedsTeXFormat{LaTeX2e}[2017/01/01]
+%<class>\ProvidesClass{ufpatcc}
+%<*class>
+    [2017/02/17 v0.1 Classe LaTeX para
+    trabalhos de conclusão de curso na
+    Universidade Federal do Pará (UFPA)]
+%</class>
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[a4paper,margin=25mm,left=50mm,nohead]{geometry}
+\usepackage[numbered]{hypdoc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+\usepackage{fancyvrb}
+\setlength{\parindent}{0.75cm}
+\setlength{\parskip}{0.5ex plus 0.5ex minus 0.2ex}
+
+% \edef\glossary@prologue\section*{{Change Histor}}\markboth{{Change Histo}}{{Change Histoy}}
+
+% \EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{\jobname.dtx}
+% \DoNotIndex{\newcommand,\newenvironment}
+%
+%\changes{v0.1}{2017/02/18}{First public release}
+%
+%
+%\title{Classe \textsf{ufpatcc}\thanks{Este documento descreve a versão
+%   \fileversion, publicada em \filedate.}}
+%\author{Paulo Alexandre Aquino da Costa\\ \texttt{contato@pauloalexandre.com}}
+%\date{\filedate{} \fileversion}
+%
+%\maketitle
+%
+%
+% \begin{abstract}
+% Classe criada para facilitar a escrita de trabalhos de conclusão de curso
+% na Universidade Federal do Pará (UFPA).
+% Esta classe é uma extensão a classe \LaTeX{} |report|,
+% acrescentado algumas opções, comandos e ambientes para a formatação automática das
+% partes pré-textuais do trabalho de conclusão como a capa e a folha de rosto, por exemplo.
+% \end{abstract}
+%
+% \section{Como usar esta classe}
+%
+% \subsection{O arquivo de configuração}
+%   Esta classe necessita de um arquivo de configuração com extensão |.cfg|
+%   e o mesmo nome que o arquivo |.tex| que está usando esta classe. Por exemplo,
+%   se o arquivo principal do trabalho for |seunome.tex| e tiver o seguinte conteúdo:
+%   \begin{Verbatim}[frame=single,fontsize=\small,gobble=6]
+%     \documentclass{ufpatcc}
+%     \begin{document}
+%       \capa
+%       \folhaderosto
+%       \chapter{Introdução}
+%       \bibliographystyle{IEEEtran.bst}
+%       \referencias[Referências]{referencias}
+%     \end{document}
+%   \end{Verbatim}
+%   \noindent{}será necessário ter, no mesmo diretório, um arquivo |seunome.cfg|,
+%   o qual pode até mesmo estar vazio, mas deve existir para que a compilação ocorra corretamente.
+%
+%   Um exemplo deste arquivo |.cfg| podem ser visto a seguir:
+%   \begin{Verbatim}[frame=single,fontsize=\small,gobble=6]
+%     \autor{Fulano da Silva}{SILVA, Fulano da}
+%     \grau{Engenheiro}
+%     \logo{figures/logo}
+%     \instituto{Instituto de Tecnologia}
+%     \faculdade{Faculdade de Engenharia da Computação e Telecomunicações}
+%     \curso{Engenharia da Computação}
+%     \titulo{Agilidade no desenvolvimento de software}
+%     \palavraschave{desenvolvimento de software, agilidade}
+%     \keywords{software development, agile}
+%     \orientador{Profª. Drª. Beltrana Ferreira}
+%     \coorientador{Prof. Dr. Sicrano dos Santos}
+%     \diretordafaculdade{Prof. Dr. Fulano Beltrano de Matos}
+%     \membrodabanca{Profª. Drª. Beltrana Ferreira, Universidade Federal do Pará}
+%     \membrodabanca{Prof. Dr. Sicrano dos Santos, Universidade Federal do Pará}
+%     \membrodabanca{Prof. Dr. Albert Einstein, Institute for Advanced Study}
+%     \ano{2017}
+%   \end{Verbatim}
+%
+% \clearpage
+% Os comandos apresentados a seguir podem ser utilizados no arquivo de configuração.
+% Cada um deles será apresentado com uma breve descrição seguida de um exemplo de uso.
+%
+% \DescribeMacro{\autor}
+%   |\autor|\marg{nome}
+%   O comando |\autor| possui dois parâmetros obrigatórios.
+%   O primeiro parâmetro deve ser o nome completo do autor.
+%   O segundo parâmetro deve ser o nome do autor em formato para citação,
+%   conforme exemplo abaixo.
+%   \par{} Deve ser especificado, pois não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \autor{Fulano da Silva}{SILVA, Fulano da}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\tipodetrabalho}
+%   O comando |\tipodetrabalho| possui apenas um parâmetro obrigatório.
+%   Possíveis valores são:
+%   \begin{itemize}
+%     \item Trabalho de Conclusão de Curso (default)
+%     \item Dissertação de Mestrado
+%     \item Tese de Doutorado
+%   \end{itemize}
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \tipodetrabalho{Tese de Doutorado}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\nivel}
+%   O comando |\nivel| possui apenas um parâmetro obrigatório.
+%   Possíveis valores são:
+%   \begin{itemize}
+%     \item Graduação (default)
+%     \item Mestrado
+%     \item Doutorado
+%   \end{itemize}
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \nivel{Doutorado}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\grau}
+%   O comando |\grau| possui apenas um parâmetro obrigatório,
+%   que identifica o grau a ser obtido quando da conclusão do curso.
+%   \par{} Deve ser especificado, pois não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \grau{Engenheiro}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\logo}
+%   O comando |\logo| possui apenas um parâmetro obrigatório,
+%   que é o caminho (relativo ou absoluto) do arquivo com a logomarca da universidade.
+%   O arquivo pode ter extensão |.png|, |.jpg| ou |.pdf|,
+%   entretanto não é necessário especificar a extesão do arquivo neste comando.
+%   \par{} Este é um comando opcional. Não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \logo{figures/logo}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\universidade}
+%   O comando |\universidade| possui apenas um parâmetro obrigatório,
+%   que define o nome da universidade.
+%   \par{} O valor default é |Universidade Federal do Pará|.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \universidade{Universidade do Estado do Pará}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\instituto}
+%   O comando |\instituto| possui apenas um parâmetro obrigatório,
+%   que define o nome do instituto do curso.
+%   \par{} O valor default é |Instituto de Tecnologia|.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \instituto{Instituto de Ciências Exatas e Naturais}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\faculdade}
+%   O comando |\faculdade| possui apenas um parâmetro obrigatório,
+%   que define o nome da faculdade do curso.
+%   \par{} Deve ser especificado, pois não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \faculdade{Faculdade de Engenharia Elétrica}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\curso}
+%   O comando |\curso| possui apenas um parâmetro obrigatório,
+%   que define o nome do curso.
+%   \par{} Deve ser especificado, pois não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \curso{Engenharia da Computação}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\titulo}
+%   O comando |\titulo| possui apenas um parâmetro obrigatório,
+%   que define o título do trabalho.
+%   \par{} Deve ser especificado, pois não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \titulo{Agilidade no desenvolvimento de software}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\subtitulo}
+%   O comando |\subtitulo| possui apenas um parâmetro obrigatório,
+%   que define o título do trabalho.
+%   \par{} Este é um comando opcional. Não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \subtitulo{estudo comparativo}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\palavraschave}
+%   O comando |\palavraschave| possui apenas um parâmetro obrigatório,
+%   que define as palavras-chave do trabalho.
+%   \par{} Deve ser especificado, pois não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \palavraschave{desenvolvimento de software, agilidade}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\keywords}
+%   O comando |\keywords| possui apenas um parâmetro obrigatório,
+%   que define as keywords (palavras-chave em inglês) do trabalho.
+%   \par{} Deve ser especificado, pois não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \keywords{software development, agile}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\orientador}
+%   O comando |\orientador| possui apenas um parâmetro obrigatório,
+%   que define o nome completo do orientador do trabalho, com sua titulação.
+%   \par{} Deve ser especificado, pois não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \orientador{Profª. Drª. Beltrana Ferreira}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\coorientador}
+%   O comando |\coorientador| possui apenas um parâmetro obrigatório,
+%   que define o nome completo do coorientador do trabalho, com sua titulação.
+%   \par{} Este é um comando opcional. Não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \coorientador{Prof. Dr. Sicrano dos Santos}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\diretordafaculdade}
+%   O comando |\diretordafaculdade| possui apenas um parâmetro obrigatório,
+%   que define o nome completo do diretor da faculdade, com sua titulação.
+%   \par{} Este é um comando opcional. Não possui valor default.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \diretordafaculdade{Prof. Dr. Fulano Beltrano de Matos}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\membrodabanca}
+%   O comando |\membrodabanca| possui apenas um parâmetro obrigatório,
+%   que define o nome completo de um membro da banca de avaliação do trabalho, com sua titulação.
+%   Este comando pode ser utilizado mais de uma vez, pois seu valor não será sobrescrito,
+%   mas sim adicionado a uma lista.
+%   O parâmetro deve seguir o formato mostrado abaixo: nome com titulação
+%   seguido por uma vírgula e depois o nome da instituição à qual o membro
+%   é vinculado.
+%   \par{} Deve ser especificado, pois não possui valor default.
+%   \begin{Verbatim}[frame=single,fontsize=\small,gobble=6]
+%     \membrodabanca{Profª. Drª. Beltrana Ferreira, Universidade Federal do Pará}
+%     \membrodabanca{Prof. Dr. Sicrano dos Santos, Universidade Federal do Pará}
+%     \membrodabanca{Prof. Dr. Albert Einstein, Institute for Advanced Study}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\cidade}
+%   O comando |\cidade| possui apenas um parâmetro obrigatório.
+%   \par{} O valor default é |Belém|.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \cidade{Recife}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\estado}
+%   O comando |\estado| possui apenas um parâmetro obrigatório.
+%   \par{} O valor default é |Pará|.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \estado{Pernambuco}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\ano}
+%   O comando |\ano| possui apenas um parâmetro obrigatório.
+%   \par{} O valor default é |o ano atual|.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \ano{2016}
+%   \end{Verbatim}
+%
+%
+% \subsection{Comandos}
+%
+%   Todos os comando descritos nessa seção utilizam os valores fornecidos
+%   no arquivo de configuração para gerarem as estruturas do trabalho.
+%
+% \DescribeMacro{\capa}
+%   Insere a capa.
+%
+% \DescribeMacro{\folhaderosto}
+%   Insere a folha de rosto.
+%
+% \DescribeMacro{\fichacatalografica}
+%   Insere a ficha catalográfica.
+%   A classificação do trabalho e o CDD devem ser obtidos
+%   com o bibliotecário responsável pela biblioteca.\par
+%   \hspace*{-\parindent}|\fichacatalografica|\marg{biblioteca}\marg{classificacao}\marg{CDD}
+%   \begin{Verbatim}[frame=single,fontsize=\small,gobble=6]
+%     \fichacatalografica{Biblioteca Prof. Dr. Clodoaldo Beckmann}
+%                        {1. Desenvolvimento de software 2. Métodos ágeis I. Título}
+%                        {21.ed. 005.1}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\folhadeaprovacao}
+%   Insere a folha de aprovação.\par
+%   \hspace*{-\parindent}|\folhadeaprovacao|\marg{data da defesa}
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \folhadeaprovacao{15/06/2016}
+%   \end{Verbatim}
+%
+% \DescribeMacro{\referencias}
+%   Insere a lista de referências.\par
+%   \hspace*{-\parindent}|\referencias|\oarg{título da lista}\marg{arquivo .bib sem extensão}
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \referencias[Referências Bibliográficas]{referencias}
+%   \end{Verbatim}
+%
+% \subsection{Ambientes}
+%
+% A classe \texttt{\jobname{}} disponibiliza os ambientes a seguir.
+% Embora os exemplos apresentados aqui sejam curtos, é possível
+% inserir múltiplos parágrafos em todos os ambientes.
+% O texto dentro dos ambientes será inserido na posição em que
+% os ambientes forem usados no trabalho.
+%
+% \clearpage
+%
+% \DescribeEnv{dedicatoria}
+%   Insere a dedicatória.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \begin{dedicatoria}
+%       Dedico esse trabalho aos meus pais.
+%     \end{dedicatoria}
+%   \end{Verbatim}
+%
+% \DescribeEnv{agradecimentos}
+%   Insere os agradecimentos.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \begin{agradecimentos}
+%       Agradeço aos meu colegas de turma e ao meu orientador.
+%     \end{agradecimentos}
+%   \end{Verbatim}
+%
+% \DescribeEnv{epigrafe}
+%   Insere a epígrafre.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \begin{epigrafe}
+%       ``A maior de todas as vitórias é sobre si mesmo.''\par
+%       Siddhartha Gautama
+%     \end{epigrafe}
+%   \end{Verbatim}
+%
+% \DescribeEnv{resumo}
+%   Insere o resumo.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \begin{resumo}
+%       Desenvolvimento ágil de software.
+%     \end{resumo}
+%   \end{Verbatim}
+%
+% \DescribeEnv{abstract}
+%   Insere o abstract.
+%   \begin{Verbatim}[frame=single,gobble=6]
+%     \begin{abstract}
+%       Agile software development.
+%     \end{abstract}
+%   \end{Verbatim}
+%
+%
+% \subsection{Opções da classe}
+%   Esta classe implementa apenas duas opções:
+%
+%   \begin{description}
+%     \item[times] altera a fonte do trabalho para uma similar a Times New Roman.
+%     \item[arial] altera a fonte do trabalho para uma similar a Arial.
+%   \end{description}
+%
+%   Além destas duas opções, também estão disponíveis todas as demais opções
+%   da classe |report|. Observe que essa classe já carrega a classe |report| com
+%   as opções |a4paper| e |12pt| ativadas.
+%
+%\StopEventually{^^A
+%  \PrintChanges
+%  \PrintIndex
+%}
+%
+% \section{Implementação da classe}
+% \setlength{\parindent}{0cm}
+%    \begin{macrocode}
+%<*class>
+%    \end{macrocode}
+% ifs para controle das opções da classe
+%    \begin{macrocode}
+\newif\if@times
+\newif\if@arial
+%    \end{macrocode}
+% Opções da classe
+%    \begin{macrocode}
+\DeclareOption{times}{\@timestrue}
+\DeclareOption{arial}{\@arialtrue}
+%    \end{macrocode}
+% Transferência de todas as opções para a classe |report|
+%    \begin{macrocode}
+\DeclareOption*{\PassOptionToClass{\CurrentOption}{report}}
+%    \end{macrocode}
+% \clearpage
+% Processamento de todas as opções
+%    \begin{macrocode}
+\ProcessOptions
+%    \end{macrocode}
+% Carregamento da classe |report|.
+%    \begin{macrocode}
+\LoadClass[12pt,a4paper]{report}
+%    \end{macrocode}
+% Execução de ações baseadas nas opções passadas
+%    \begin{macrocode}
+\if@times
+  \RequirePackage{newtxtext}
+  \RequirePackage{newtxmath}
+  \RequirePackage[scaled=.90]{helvet}
+  \RequirePackage{courier}
+\fi
+\if@arial
+  \RequirePackage{newtxtext}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+%    \end{macrocode}
+% Requisição dos pacotes necessários
+%    \begin{macrocode}
+\RequirePackage[brazil]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{indentfirst}
+\RequirePackage{amsmath}
+\RequirePackage{graphicx}
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage[hyphens]{url}
+\RequirePackage[unicode,colorlinks]{hyperref}
+%    \end{macrocode}
+
+% Comandos para o arquivo de configuração
+%    \begin{macrocode}
+\newcommand*{\logo}              [1]{\gdef\@logo{#1}}
+\newcommand*{\universidade}      [1]{\gdef\@universidade{#1}}
+\newcommand*{\instituto}         [1]{\gdef\@instituto{#1}}
+\newcommand*{\faculdade}         [1]{\gdef\@faculdade{#1}}
+\newcommand*{\curso}             [1]{\gdef\@curso{#1}}
+\newcommand*{\nivel}             [1]{\gdef\@nivel{#1}}
+\newcommand*{\grau}              [1]{\gdef\@grau{#1}}
+\newcommand*{\tipodetrabalho}    [1]{\gdef\@tipodetrabalho{#1}}
+\newcommand*{\titulo}            [1]{\gdef\@titulo{#1}}
+\newcommand*{\subtitulo}         [1]{\gdef\@subtitulo{#1}}
+\newcommand*{\palavraschave}     [1]{\gdef\@palavraschave{#1}}
+\newcommand*{\keywords}          [1]{\gdef\@keywords{#1}}
+\newcommand*{\autor}             [2]{\gdef\@autor{#1}\gdef\@autorcitacao{#2}}
+\newcommand*{\orientador}        [1]{\gdef\@orientador{#1}}
+\newcommand*{\coorientador}      [1]{\gdef\@coorientador{#1}}
+\newcommand*{\diretordafaculdade}[1]{\gdef\@diretordafaculdade{#1}}
+\newcommand*{\cidade}            [1]{\gdef\@cidade{#1}}
+\newcommand*{\estado}            [1]{\gdef\@estado{#1}}
+\newcommand*{\ano}               [1]{\gdef\@ano{#1}}
+\newcommand*{\membrodabanca}     [1]{\stepcounter{membros}\@membro{#1}}
+%    \end{macrocode}
+
+% Valores default para os comandos do arquivo de configuração
+%    \begin{macrocode}
+\universidade{Universidade Federal do Pará}
+\tipodetrabalho{Trabalho de Conclusão de Curso}
+\instituto{Instituto de Tecnologia}
+\nivel{Graduação}
+\cidade{Belém}
+\estado{Pará}
+\ano{\the\year}
+\faculdade{NOME DA FACULDADE}
+\curso{NOME DO CURSO}
+\titulo{TÍTULO DO TRABALHO}
+\palavraschave{PALAVRAS-CHAVE}
+\keywords{KEYWORDS}
+\autor{Nome Completo do Autor}{AUTOR, Nome Completo do}
+\orientador{Titulação e Nome Completo do Orientador}
+\grau{GRAU OBTIDO}
+%    \end{macrocode}
+% Comandos opcionais do arquivo de configuração
+%    \begin{macrocode}
+\logo{}
+\subtitulo{}
+\coorientador{}
+\diretordafaculdade{}
+%    \end{macrocode}
+
+% ifs para os comandos opcionais
+%    \begin{macrocode}
+\newcommand\if@logo[2]{\if|\@logo\empty|#2\else#1\fi}
+\newcommand\if@subtitulo[2]{\if|\@subtitulo\empty|#2\else#1\fi}
+\newcommand\if@coorientador[2]{\if|\@coorientador\empty|#2\else#1\fi}
+%    \end{macrocode}
+
+% \begin{macro}{\capa}
+%   Insere a capa formatada
+%    \begin{macrocode}
+\newcommand\capa{
+  \thispagestyle{empty}
+  \begin{center}
+    \if@logo{\includegraphics[height=3cm]{\@logo}}{}
+    \vspace{1cm}
+    \par\MakeUppercase\@universidade
+    \par\MakeUppercase\@instituto
+    \par\MakeUppercase\@faculdade
+    \vspace{4cm}
+    \par\textbf{\MakeUppercase\@titulo}\if@subtitulo{:}{}
+    \par\textbf{\@subtitulo}
+    \vspace{4cm}
+    \begin{flushright}
+      \textbf{\MakeUppercase\@autor}
+    \end{flushright}
+    \vfill
+    \MakeUppercase\@cidade{} -- \MakeUppercase\@estado
+    \par\@ano
+  \end{center}
+  \clearpage
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\folhaderosto}
+%   Insere a folha de rosto formatada
+%    \begin{macrocode}
+\newcommand\folhaderosto{
+  \thispagestyle{empty}
+  \begin{center}
+    \if@logo{\includegraphics[height=3cm]{\@logo}}{}
+    \vspace{1cm}
+    \par\MakeUppercase\@universidade
+    \par\MakeUppercase\@instituto
+    \par\MakeUppercase\@faculdade
+    \vspace{2cm}
+    \par\textbf{\MakeUppercase\@autor}
+    \vspace{2cm}
+    \par\textbf{\MakeUppercase\@titulo}\if@subtitulo{:}{}
+    \par\textbf{\@subtitulo}
+    \vspace{2cm}
+    \begin{flushright}
+      \begin{minipage}[right]{7cm}
+        \@espacamento{1.5}{
+          \fontsize{10pt}{10pt}\selectfont
+          \@tipodetrabalho{} apresentado para obtenção
+          do grau de \@grau{} em \@curso{}, do \@instituto{},
+          da \@faculdade{}. Sob orientação de \@orientador{}%
+          \if@coorientador{ e coorientação de \@coorientador{}}{}.
+        }
+       \end{minipage}
+    \end{flushright}
+    \vfill
+    \MakeUppercase\@cidade{} -- \MakeUppercase\@estado
+    \par\@ano
+  \end{center}
+  \clearpage
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\fichacatalografica}
+%   Insere a ficha catalográfica formatada
+%    \begin{macrocode}
+\newcommand\fichacatalografica[3]{
+  \thispagestyle{empty}
+  \newcommand\@biblioteca{#1}
+  \newcommand\@classificacao{#2}
+  \newcommand\@cdd{#3}
+  \null\vfill
+  \begin{center}\sf
+    Dados Internacionais de Catalogação na Publicação (CIP)\par
+    \@biblioteca / \@universidade{}, \@cidade{}-\@estado{}\par
+    \rule{1\linewidth}{0.5pt}\par\vspace*{0.3cm}
+    \begin{minipage}{0.95\linewidth}
+      {
+        \footnotesize\setlength{\baselineskip}{1.1\baselineskip}
+        \@autorcitacao{}.
+        \par\setlength{\parindent}{0.75cm}
+        \@titulo{}\if@subtitulo{: \MakeLowercase\@subtitulo{}}{} /
+        \@autor{}; orientador \@orientador{} --- \@ano{}.
+        \par\vspace*{0.4cm}
+        \@tipodetrabalho{} (\@nivel{} em \@curso{}) -- \@universidade{},
+        \@instituto{}, Curso de \@curso{}, \@cidade{}, \@ano{}.
+        \par\vspace*{0.4cm}
+        \@classificacao{}
+        \par\vspace*{0.4cm}
+        \begin{flushright}
+          CDD - \@cdd{}
+        \end{flushright}
+      }
+    \end{minipage}
+    \par\vspace*{0.3cm}\rule{1\linewidth}{0.5pt}
+  \end{center}
+  \clearpage
+}
+%    \end{macrocode}
+% \end{macro}
+
+% Lista de membros da banca avaliadora
+%    \begin{macrocode}
+\newcounter{membros}
+\long\gdef\@membro#1{\membro@add#1,,\end}
+\long\gdef\membro@add#1,#2,#3,#4\end{
+  \expandafter\def\csname membro@\alph{membros}@nome\endcsname{\expandafter#1}
+  \expandafter\def\csname membro@\alph{membros}@instituicao\endcsname{#2}
+  \ifx,#3,\expandafter\let\csname membro@\alph{membros}@papel\endcsname\empty
+  \else \expandafter\def\csname membro@\alph{membros}@papel\endcsname{#3}\fi
+}
+%    \end{macrocode}
+
+% \begin{macro}{\folhadeaprovacao}
+%   Insere a folha de aprovação formatada
+%    \begin{macrocode}
+\newcommand\folhadeaprovacao[1]{
+  \thispagestyle{empty}
+  \begin{center}
+    \textbf{\MakeUppercase\@titulo}\if@subtitulo{:}{}
+    \par\textbf{\@subtitulo}
+  \end{center}
+  \@indentacao{0}{\@espacamento{2.0}{
+    Este trabalho foi julgado adequado em #1
+    para a obtenção do Grau de \@grau{} em \@curso{},
+    aprovado em sua forma final pela banca examinadora
+    que atribui o conceito $\underline{ \qquad \qquad \qquad}$.
+  }}
+  \par\vfil
+  \begin{flushright}
+    \begin{minipage}[b]{10cm}
+      \begin{flushright}
+        \@espacamento{1.25}{
+          \newcounter{tmp}
+          \c@tmp=0
+          \loop
+            \advance\c@tmp by 1
+            \vspace*{1.5cm}\par
+            \if
+              \expandafter\csname membro@\alph{tmp}@nome\endcsname\empty
+            \else
+              \vrule width 10cm height 0.2mm\par
+            \fi
+            {\large\expandafter\csname membro@\alph{tmp}@nome\endcsname{}}\par
+            {\small\MakeUppercase{\expandafter\csname
+            membro@\alph{tmp}@instituicao\endcsname}}\par
+            \if
+              \expandafter\csname membro@\alph{tmp}@papel\endcsname\empty
+            \else
+              {\small\MakeUppercase{\expandafter\csname
+              membro@\alph{tmp}@papel\endcsname}}
+            \fi
+            \ifnum\c@tmp<\c@membros
+          \repeat
+          \if \@diretordafaculdade\empty\else
+            \vspace{2cm}\par
+            \vrule width 10cm height 0.2mm\par
+            {\large\@diretordafaculdade{}}\par
+            {\small\MakeUppercase{Diretor da \@faculdade}}
+          \fi
+        }
+      \end{flushright}
+    \end{minipage}
+  \end{flushright}
+  \clearpage
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\referencias}
+%   Insere a lista de referências
+%    \begin{macrocode}
+\newcommand\referencias[2][Referências Bibliográficas]{
+  \renewcommand{\bibname}{#1}
+  {
+    \setlength{\baselineskip}{1.2\baselineskip}
+    \bibliography{#2}
+    \addcontentsline{toc}{chapter}{\bibname}
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\@referencia}
+%   Comando interno que armazena a referência bibliográfica do trabalho
+%    \begin{macrocode}
+\newcommand\@referencia{
+  \@autorcitacao{}. \textbf{\@titulo}\ignorespaces
+  \if@subtitulo{: \MakeLowercase\@subtitulo{}}{}.
+  \@tipodetrabalho{} (\@nivel{} em \@curso{}) ---
+  \@universidade{}, \@cidade{}, \@ano{}.\par\vspace{1cm}
+}
+%    \end{macrocode}
+% \end{macro}
+
+% \clearpage
+% \begin{macro}{\@indentacao}
+%   Comando interno para alterar o recuo de primeira linha
+%    \begin{macrocode}
+\newcommand\@indentacao[2]{{\setlength{\parindent}{#1cm}#2}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\@espacamento}
+%   Comando interno para alterar o espaçamento entrelinhas
+%    \begin{macrocode}
+\newcommand\@espacamento[2]{{
+  \def\baselinestretch{#1}
+  \@currsize #2\par
+}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{environment}{dedicatoria}
+%   Insere a dedicatória com fonte em itálico
+%    \begin{macrocode}
+\newenvironment{dedicatoria}
+{
+  \thispagestyle{empty}
+  \null\vfill
+  \begin{flushright}
+    \begin{minipage}{10cm}
+      \begin{flushright}
+        \fontshape{it}\selectfont
+}{
+      \end{flushright}
+    \end{minipage}
+  \end{flushright}
+  \clearpage
+}
+%    \end{macrocode}
+% \end{environment}
+
+% \begin{environment}{agradecimentos}
+%   Insere os agradecimentos
+%    \begin{macrocode}
+\newenvironment{agradecimentos}
+{
+  \thispagestyle{empty}
+  \begin{center}
+    \huge\bfseries Agradecimentos
+  \end{center}
+  \par\vspace{1cm}\setlength{\parindent}{1cm}
+}{\clearpage}
+%    \end{macrocode}
+% \end{environment}
+
+% \begin{environment}{epigrafe}
+%   Insere a epígrafe
+%    \begin{macrocode}
+\newenvironment{epigrafe}
+{
+  \thispagestyle{empty}
+  \null\vfill
+  \begin{flushright}
+    \begin{minipage}{10cm}
+      \begin{flushright}
+        \fontshape{it}\selectfont
+}{
+      \end{flushright}
+    \end{minipage}
+  \end{flushright}
+  \clearpage
+}
+%    \end{macrocode}
+% \end{environment}
+
+% \begin{environment}{resumo}
+%   Insere o resumo com as palavras-chave
+%    \begin{macrocode}
+\newenvironment{resumo}
+{
+  \thispagestyle{empty}
+  \begin{center}
+    \huge\bfseries Resumo
+  \end{center}
+  \par\vspace{1cm}\setlength{\parindent}{0cm}
+  \@referencia{}
+}{
+  \par\vspace{0.25cm}
+  {\bfseries Palavras-chave:} \@palavraschave{}.
+  \clearpage
+}
+%    \end{macrocode}
+% \end{environment}
+
+% \begin{environment}{abstract}
+%   Insere o abstract com as keywords
+%    \begin{macrocode}
+\renewenvironment{abstract}
+{
+  \thispagestyle{empty}
+  \begin{center}
+    \huge\bfseries Abstract
+  \end{center}
+  \par\vspace{1cm}\setlength{\parindent}{0cm}
+  \@referencia{}
+}{
+  \par\vspace{0.25cm}
+  {\bfseries Keywords:} \@keywords{}.
+  \clearpage
+}
+%    \end{macrocode}
+% \end{environment}
+
+% Formato das páginas
+%    \begin{macrocode}
+\geometry{a4paper,
+          top=3cm,bottom=2cm,left=3cm,right=2cm,
+          headsep=5mm,headheight=7mm,
+          marginparsep=5mm,marginparwidth=10mm}
+%    \end{macrocode}
+
+% Formato do cabeçalho
+%    \begin{macrocode}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}} % for chapters first pages
+\fancypagestyle{numbered}{
+  \fancyhf{}
+  \fancyhead[R]{\thepage}
+}
+%    \end{macrocode}
+
+% Configurações iniciais para o trabalho
+%    \begin{macrocode}
+\AtBeginDocument{
+  \flushbottom
+  \pagestyle{numbered}
+  \setlength{\parindent}{1.75cm}
+  \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+  \hypersetup{
+    hypertexnames,bookmarksopen=true,
+    linkcolor=black,citecolor=black,urlcolor=black,
+    pdftitle={\@titulo\if@subtitulo{: \@subtitulo}{}},
+    pdfauthor={\@autor},
+    pdfsubject={\@tipodetrabalho},
+    pdfkeywords={\@palavraschave}
+  }
+  \input{\jobname.cfg}
+}
+
+\endinput
+%</class>
+%    \end{macrocode}
+%\Finale
