@@ -1,5 +1,7 @@
 \documentclass{../ufpatcc}
 \usepackage{lipsum}
+% Para usar as regras da ABNT nas referências e citações. Se preferir usar as regras do IEEE, comente aqui e descomente \bibliographystyle{ieeetr} mais abaixo.
+\usepackage[alf,abnt-full-initials=yes]{abntex2cite}  % comente se não tiver abntex2 instalado
 \begin{document}
 % FRONT MATTER -------------------------------------------%
   \capa
@@ -8,7 +10,7 @@
   \fichacatalografica{Biblioteca Prof. Dr. Clodoaldo Beckmann}
                      {1. Área 2. Outra área I. Título.}
                      {21.ed. 001.1}
-  \folhadeaprovacao{30/03/2017}
+  \folhadeaprovacao{\today}
   \begin{dedicatoria}
     \lipsum[13]
   \end{dedicatoria}
@@ -28,19 +30,20 @@
   \tableofcontents
 
 % BODY MATTER --------------------------------------------%
-  \chapter{Introdução} % ou \input{arquivoexterno}
-  \chapter{Revisão Bibliográfica}
+  \chapter*{Introdução}\addcontentsline{toc}{chapter}{Introdução}
+  \chapter{Revisão Bibliográfica} % ou \input{arquivoexterno}
     \lipsum[1]\cite{atalholivro}
     \lipsum[2]\cite{atalhoonline}
   \chapter{Descrição do Trabalho Realizado}
   \chapter{Resultados}
-  \chapter{Conclusão}
+  \chapter*{Conclusão}\addcontentsline{toc}{chapter}{Conclusão}
 
 % BACK MATTER --------------------------------------------%
   \appendix
     \chapter{Algum apêndice}
     \chapter{Outro apêndice}
 
-  \bibliographystyle{ieeetr}
-  \referencias{referencias}
+  % Para usar as regras do IEEE nas referências e citações.
+  % \bibliographystyle{ieeetr} % descomente se quiser usar e tiver instalado IEEEtran
+  \referencias{referencias} % podem ser passados vários arquivos .bib aqui, separados por vírgula e sem a extensão .bib
 \end{document}

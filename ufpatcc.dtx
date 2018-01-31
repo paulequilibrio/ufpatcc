@@ -55,7 +55,7 @@ a ficha catalográfica e a folha de aprovação.
 \askforoverwritefalse
 \preamble
 
-Copyright (C) 2017 by Paulo Alexandre Aquino da Costa <contato@pauloalexandre.com>
+Copyright (C) 2018 by Paulo Alexandre Aquino da Costa <contato@pauloalexandre.com>
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License (LPPL), either
@@ -115,7 +115,7 @@ Running "make install" installs the files in the local TeX tree.
 %<class>\NeedsTeXFormat{LaTeX2e}[2017/01/01]
 %<class>\ProvidesClass{ufpatcc}
 %<*class>
-    [2017/02/17 v0.1 Classe LaTeX para
+    [2018/01/31 v0.3 Classe LaTeX para
     trabalhos de conclusão de curso na
     Universidade Federal do Pará (UFPA)]
 %</class>
@@ -145,7 +145,9 @@ Running "make install" installs the files in the local TeX tree.
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
 %
-%\changes{v0.1}{2017/02/18}{First public release}
+%\changes{v0.1}{2017/02/18}{Primeira versão publicada}
+%\changes{v0.2}{2018/01/31}{Pequena correção}
+%\changes{v0.3}{2018/01/31}{Melhorias no exemplo de uso}
 %
 %
 %\title{Classe \textsf{ufpatcc}\thanks{Este documento descreve a versão
@@ -200,7 +202,7 @@ Running "make install" installs the files in the local TeX tree.
 %     \membrodabanca{Profª. Drª. Beltrana Ferreira, Universidade Federal do Pará}
 %     \membrodabanca{Prof. Dr. Sicrano dos Santos, Universidade Federal do Pará}
 %     \membrodabanca{Prof. Dr. Albert Einstein, Institute for Advanced Study}
-%     \ano{2017}
+%     \ano{2018}
 %   \end{Verbatim}
 %
 % \clearpage
@@ -220,7 +222,7 @@ Running "make install" installs the files in the local TeX tree.
 %
 % \DescribeMacro{\tipodetrabalho}
 %   O comando |\tipodetrabalho| possui apenas um parâmetro obrigatório.
-%   Possíveis valores são:
+%   Exemplos de valores:
 %   \begin{itemize}
 %     \item Trabalho de Conclusão de Curso (default)
 %     \item Dissertação de Mestrado
@@ -232,7 +234,7 @@ Running "make install" installs the files in the local TeX tree.
 %
 % \DescribeMacro{\nivel}
 %   O comando |\nivel| possui apenas um parâmetro obrigatório.
-%   Possíveis valores são:
+%   Exemplos de valores:
 %   \begin{itemize}
 %     \item Graduação (default)
 %     \item Mestrado
@@ -254,7 +256,7 @@ Running "make install" installs the files in the local TeX tree.
 %   O comando |\logo| possui apenas um parâmetro obrigatório,
 %   que é o caminho (relativo ou absoluto) do arquivo com a logomarca da universidade.
 %   O arquivo pode ter extensão |.png|, |.jpg| ou |.pdf|,
-%   entretanto não é necessário especificar a extesão do arquivo neste comando.
+%   entretanto não é necessário especificar a extensão do arquivo neste comando.
 %   \par{} Este é um comando opcional. Não possui valor default.
 %   \begin{Verbatim}[frame=single,gobble=6]
 %     \logo{figures/logo}
@@ -411,14 +413,14 @@ Running "make install" installs the files in the local TeX tree.
 %   Insere a folha de aprovação.\par
 %   \hspace*{-\parindent}|\folhadeaprovacao|\marg{data da defesa}
 %   \begin{Verbatim}[frame=single,gobble=6]
-%     \folhadeaprovacao{15/06/2016}
+%     \folhadeaprovacao{28/02/2018}
 %   \end{Verbatim}
 %
 % \DescribeMacro{\referencias}
-%   Insere a lista de referências.\par
-%   \hspace*{-\parindent}|\referencias|\oarg{título da lista}\marg{arquivo .bib sem extensão}
+%   Insere a lista de referências, que podem vir de vários arquivos |.bib|.\par
+%   \hspace*{-\parindent}|\referencias|\oarg{título da lista}\marg{arquivo(s) .bib sem extensão}
 %   \begin{Verbatim}[frame=single,gobble=6]
-%     \referencias[Referências Bibliográficas]{referencias}
+%     \referencias[Referências Bibliográficas]{referencias1,referencias2}
 %   \end{Verbatim}
 %
 % \subsection{Ambientes}
@@ -426,7 +428,7 @@ Running "make install" installs the files in the local TeX tree.
 % A classe \texttt{\jobname{}} disponibiliza os ambientes a seguir.
 % Embora os exemplos apresentados aqui sejam curtos, é possível
 % inserir múltiplos parágrafos em todos os ambientes.
-% O texto dentro dos ambientes será inserido na posição em que
+% Os textos dentro dos ambientes serão inseridos na posição em que
 % os ambientes forem usados no trabalho.
 %
 % \clearpage
@@ -443,7 +445,7 @@ Running "make install" installs the files in the local TeX tree.
 %   Insere os agradecimentos.
 %   \begin{Verbatim}[frame=single,gobble=6]
 %     \begin{agradecimentos}
-%       Agradeço aos meu colegas de turma e ao meu orientador.
+%       Agradeço aos meus colegas de turma e ao meu orientador.
 %     \end{agradecimentos}
 %   \end{Verbatim}
 %
@@ -486,8 +488,11 @@ Running "make install" installs the files in the local TeX tree.
 %   as opções |a4paper| e |12pt| ativadas.
 %
 %\StopEventually{^^A
+%  \clearpage
 %  \PrintChanges
+% \iffalse
 %  \PrintIndex
+% \fi
 %}
 %
 % \section{Implementação da classe}
@@ -934,15 +939,16 @@ Running "make install" installs the files in the local TeX tree.
   \pagestyle{numbered}
   \setlength{\parindent}{1.75cm}
   \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+  \input{\jobname.cfg}
   \hypersetup{
     hypertexnames,bookmarksopen=true,
     linkcolor=black,citecolor=black,urlcolor=black,
     pdftitle={\@titulo\if@subtitulo{: \@subtitulo}{}},
     pdfauthor={\@autor},
     pdfsubject={\@tipodetrabalho},
-    pdfkeywords={\@palavraschave}
+    pdfkeywords={\@palavraschave},
+    pdfcreator={LaTeX class ufpatcc with hyperref package}
   }
-  \input{\jobname.cfg}
 }
 
 \endinput
