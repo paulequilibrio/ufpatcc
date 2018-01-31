@@ -5,19 +5,19 @@
 %% The original source files were:
 %%
 %% ufpatcc.dtx  (with options: `class')
-%% 
+%%
 %% Copyright (C) 2017 by Paulo Alexandre Aquino da Costa <contato@pauloalexandre.com>
-%% 
+%%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
 %% version 1.3c of this license or (at your option) any later
 %% version.  The latest version of this license is in the file:
-%% 
+%%
 %% http://www.latex-project.org/lppl.txt
-%% 
+%%
 %% This work is "maintained" (as per LPPL maintenance status) by
 %% Paulo Alexandre Aquino da Costa.
-%% 
+%%
 \NeedsTeXFormat{LaTeX2e}[2017/01/01]
 \ProvidesClass{ufpatcc}
     [2017/02/17 v0.1 Classe LaTeX para
@@ -351,6 +351,7 @@
   \pagestyle{numbered}
   \setlength{\parindent}{1.75cm}
   \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+  \input{\jobname.cfg}
   \hypersetup{
     hypertexnames,bookmarksopen=true,
     linkcolor=black,citecolor=black,urlcolor=black,
@@ -359,21 +360,20 @@
     pdfsubject={\@tipodetrabalho},
     pdfkeywords={\@palavraschave}
   }
-  \input{\jobname.cfg}
 }
 
-%% 
+%%
 %% -------:| -----------------------------------------------------------------
 %% ufpatcc:| Classe LaTeX para trabalhos de conclusão de curso na Universidade Federal do Pará
 %%  Author:| Paulo Alexandre Aquino da Costa
 %%  E-mail:| contato@pauloalexandre.com
 %% License:| Released under the LaTeX Project Public License v1.3c or later
 %%     See:| http://www.latex-project.org/lppl.txt
-%% 
+%%
 %% This work consists of the file ufpatcc.dtx and a Makefile.
 %% Running "make" generates the derived files README, ufpatcc.pdf and ufpatcc.cls.
 %% Running "make inst" installs the files in the user's TeX tree.
 %% Running "make install" installs the files in the local TeX tree.
-%% 
+%%
 %%
 %% End of file `ufpatcc.cls'.
