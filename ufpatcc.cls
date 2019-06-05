@@ -21,8 +21,8 @@
 \NeedsTeXFormat{LaTeX2e}[2017/01/01]
 \ProvidesClass{ufpatcc}
     [2018/01/31 v0.3 Classe LaTeX para
-    trabalhos de conclusão de curso na
-    Universidade Federal do Pará (UFPA)]
+    trabalhos de conclusao de curso na
+    Universidade Federal do Para (UFPA)]
 \newif\if@times
 \newif\if@arial
 \DeclareOption{times}{\@timestrue}
