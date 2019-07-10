@@ -133,7 +133,7 @@
     \par\textbf{\@subtitulo}
     \vspace{2cm}
     \begin{flushright}
-      \begin{minipage}[right]{7cm}
+      \begin{minipage}[right]{8cm}
         \@espacamento{1.5}{
           \fontsize{10pt}{10pt}\selectfont
           \@tipodetrabalho{} apresentado para obtenção
@@ -202,7 +202,7 @@
     Este trabalho foi julgado adequado em #1
     para a obtenção do Grau de \@grau{} em \@curso{},
     aprovado em sua forma final pela banca examinadora
-    que atribui o conceito $\underline{ \qquad \qquad \qquad}$.
+    que atribuiu o conceito $\underline{ \qquad \qquad \qquad}$.
   }}
   \par\vfil
   \begin{flushright}
@@ -220,14 +220,13 @@
               \vrule width 10cm height 0.2mm\par
             \fi
             {\large\expandafter\csname membro@\alph{tmp}@nome\endcsname{}}\par
-            {\small\MakeUppercase{\expandafter\csname
-            membro@\alph{tmp}@instituicao\endcsname}}\par
             \if
               \expandafter\csname membro@\alph{tmp}@papel\endcsname\empty
             \else
-              {\small\MakeUppercase{\expandafter\csname
-              membro@\alph{tmp}@papel\endcsname}}
+              {\large{\expandafter\csname membro@\alph{tmp}@papel\endcsname}}\par
             \fi
+            {\textsc{\expandafter\csname
+            membro@\alph{tmp}@instituicao\endcsname}}\par
             \ifnum\c@tmp<\c@membros
           \repeat
           \if \@diretordafaculdade\empty\else
