@@ -20,7 +20,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2017/01/01]
 \ProvidesClass{ufpatcc}
-    [2018/01/31 v0.3 Classe LaTeX para
+    [2019/08/13 v0.4 Classe LaTeX para
     trabalhos de conclusao de curso na
     Universidade Federal do Para (UFPA)]
 \newif\if@times
@@ -150,31 +150,38 @@
   \clearpage
 }
 
-\newcommand\fichacatalografica[3]{
+\newcommand\fichacatalografica[6]{
   \thispagestyle{empty}
-  \newcommand\@biblioteca{#1}
-  \newcommand\@classificacao{#2}
-  \newcommand\@cdd{#3}
+  \newcommand\@catalogacaocip{#1}
+  \newcommand\@biblioteca{#2}
+  \newcommand\@chamada{#3}
+  \newcommand\@extras{#4}
+  \newcommand\@classificacao{#5}
+  \newcommand\@cdd{#6}
   \null\vfill
   \begin{center}\sf
-    Dados Internacionais de Catalogação na Publicação (CIP)\par
-    \@biblioteca / \@universidade{}, \@cidade{}-\@estado{}\par
+    \@catalogacaocip\par
+    \@biblioteca\par
     \rule{1\linewidth}{0.5pt}\par\vspace*{0.3cm}
-    \begin{minipage}{0.95\linewidth}
+    \begin{minipage}[t]{0.1\linewidth}
+      \@chamada
+    \end{minipage}
+    \begin{minipage}[t]{0.85\linewidth}
       {
         \footnotesize\setlength{\baselineskip}{1.1\baselineskip}
         \@autorcitacao{}.
         \par\setlength{\parindent}{0.75cm}
         \@titulo{}\if@subtitulo{: \MakeLowercase\@subtitulo{}}{} /
-        \@autor{}; orientador \@orientador{} --- \@ano{}.
+        \@autor{}. --- \@ano{}. \@extras{}
         \par\vspace*{0.4cm}
-        \@tipodetrabalho{} (\@nivel{} em \@curso{}) -- \@universidade{},
-        \@instituto{}, Curso de \@curso{}, \@cidade{}, \@ano{}.
+        Orientador(a): \@orientador{}\par
+        \if@coorientador{Coorientador(a): \@coorientador{}\par}{}
+        \@tipodetrabalho{} (\@nivel{}) -- \@faculdade{}, \@instituto{}, \@universidade{}, \@cidade{}, \@ano{}.
         \par\vspace*{0.4cm}
         \@classificacao{}
         \par\vspace*{0.4cm}
         \begin{flushright}
-          CDD - \@cdd{}
+          CDD \@cdd{}
         \end{flushright}
       }
     \end{minipage}
